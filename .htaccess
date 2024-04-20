@@ -1,0 +1,12 @@
+#Sirive para no permitir que el usuario visualize nuestros directorios y sus archivos
+Options All -Indexes
+#Se activa el motor de las redirecciones, para crear urls amigables
+RewriteEngine on
+#Verificamos si un directorio por el metodo Request es valido
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#Verificamos si un archivo por el metodo Request es valido
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#Todo lo que le pasemos a la url despues de la ruta principal es decir  http://localhost/pos_venta/Hola sera almacenado en el parametro url
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
